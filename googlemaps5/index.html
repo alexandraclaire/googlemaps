@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Google Maps 5</title>
+	<script src="http://maps.googleapis.com/maps/api/js"></script> <!--loaded the google maps api-->
+	<script>
+	//variables for my points
+	var myCenter = new google.maps.LatLng(43.9500, 4.8100);
+
+	function initialize() { 
+		var mapProp = {
+			center: myCenter,
+			zoom: 4,
+			disableDefaultUI: true, //gets rid of default controls etc. You can look on documentation for other controls in this area.
+			mapTypeId: google.maps.MapTypeId.TERRAIN, //creates plain map scenario
+
+		};
+
+		map = new google.maps.Map(document.getElementById('googleMap'), mapProp); //puts map in the div
+
+//adds the click event of placing marker
+	google.maps.event.addListener(map, 'click', function(event) {
+		placeMarker(event.latLng);
+	});
+}
+//creates placemarker function
+	function placeMarker (location) {
+		var marker = new google.maps.Marker ({
+			position:location,
+			map: map,
+		}); //creates info window
+		var infoWindow = new google.maps.InfoWindow ({
+			content: 'Latitude: ' + location.lat() + '<br>Longitude: ' + location.lng()
+		});
+//makes it happen
+		infoWindow.open(map, marker);
+
+	}
+
+
+
+	google.maps.event.addDomListener(window, 'load', initialize); //creates a document ready scenario
+	</script>
+</head>
+<body>
+	<div id="googleMap" style="width:500px; height:380px"></div>
+</body>
+</html>
