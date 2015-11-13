@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Google Maps 7</title>
+	<script src="http://maps.googleapis.com/maps/api/js"></script> <!--loaded the google maps api-->
+	<script>
+	//variables for my points
+	var myCenter = new google.maps.LatLng(-36.854420, 174.768083);
+
+	function initialize() { 
+		var mapProp = {
+			center: myCenter,
+			zoom: 18,
+			mapTypeId: google.maps.MapTypeId.ROADMAP, //creates plain map scenario
+		};
+
+		var map = new google.maps.Map(document.getElementById('googleMap'), mapProp); //puts map in the div
+			map.setTilt(0);//sets tilt thing/control for the satellite version.
+			//setting further styling
+
+		var styles = [
+		{
+			stylers: [
+			{
+				hue:"#f2c4db" //sets the color
+			}, 
+			{
+				saturation:30
+			}]
+
+		}, {
+			featureType:'road',
+			elementType:'geometry.fill',
+			stylers: [
+			{ lightness:10},
+			{ visibility: 'simplified'},
+			{ hue: '#f11e86'},
+			{ saturation: '50'} //changes the styles of the roads into a simple flat design. 
+			]
+		}, {
+			featureType:'road',
+			elementType:'geometry.stroke',
+			stylers: [
+			{ lightness:10},
+			{ visibility: 'simplified'},
+			{ color: '#b43875'} //changes the styles of the roads into a simple flat design. 
+			]
+		},{
+			featureType:'road',
+			elementType: 'labels',
+			stylers: [
+			{ visibility:'simplified',} //styles labels.
+			]
+		},
+		{
+			featureType:'landscape',
+			elementType: 'geometry',
+			stylers: [
+			{ visibility:'simplified',},
+			{ color: '#e16fa7'} //styles labels.
+			]
+		}
+		];	
+		map.setOptions({styles:styles});
+	}		
+
+
+	google.maps.event.addDomListener(window, 'load', initialize); //creates a document ready scenario
+	</script>
+</head>
+<body>
+	<div id="googleMap" style="width:500px; height:380px"></div>
+</body>
+</html>
