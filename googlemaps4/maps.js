@@ -12,11 +12,17 @@
 			mapTypeId: google.maps.MapTypeId.ROADMAP, //creates plain map scenario
 
 		};
+		var image = {
+			url: 'marker.png',
+		};
+
 		map = new google.maps.Map(document.getElementById('googleMap'), mapProp); //puts map in the div
 
 		var markerAls = new google.maps.Marker({
 			position: als,
-			title:'Click to zoom'
+			title:'Click to zoom',
+			animation: google.maps.Animation.BOUNCE,
+			icon:image
 		});
 
 		markerAls.setMap(map);
@@ -24,7 +30,9 @@
 
 		var markerFlaming = new google.maps.Marker({
 			position: flamingOnion,
-			title:'Click to zoom'
+			title:'Click to zoom',
+			animation: google.maps.Animation.BOUNCE,
+			icon:image
 		});
 
 		markerFlaming.setMap(map);
@@ -33,7 +41,9 @@
 
 		var markerLittleBird = new google.maps.Marker({
 			position: littleBird,
-			title:'Click to zoom'
+			title:'Click to zoom',
+			animation: google.maps.Animation.BOUNCE,
+			icon:image
 		});
 
 		markerLittleBird.setMap(map);
@@ -42,7 +52,9 @@
 
 		var markerMimosa = new google.maps.Marker({
 			position: mimosa,
-			title:'Click to zoom'
+			title:'Click to zoom',
+			animation: google.maps.Animation.BOUNCE,
+			icon:image
 		});
 
 		markerMimosa.setMap(map);
@@ -51,7 +63,9 @@
 
 		var markerBirdWire = new google.maps.Marker({
 			position: birdWire,
-			title:'Click to zoom'
+			title:'Click to zoom',
+			animation: google.maps.Animation.BOUNCE,
+			icon:image
 		});
 
 		markerBirdWire.setMap(map);
@@ -101,5 +115,41 @@
   
   		infoWindowFive.open(map, markerBirdWire); 
   	});
+		var styles = [
+		{
+			stylers: [
+			{
+				hue:"#e4f6f9" //sets the color
+			}, 
+			{
+				saturation:50
+			}]
+
+		}, {
+			featureType:'road',
+			elementType:'geometry',
+			stylers: [
+			{ lightness:10},
+			{ visibility: 'simplified'},
+			{ hue: '#a3aaab'},
+			{ saturation: '50'} //changes the styles of the roads into a simple flat design. 
+			]
+		},{
+			featureType:'road',
+			elementType: 'labels',
+			stylers: [
+			{ visibility:'simplified',} //styles labels.
+			]
+		},
+		{
+			featureType:'landscape',
+			elementType: 'geometry',
+			stylers: [
+			{ visibility:'simplified',},
+			{ color: '#e4f6f9'} //styles labels.
+			]
+		}
+		];	
+		map.setOptions({styles:styles});
 }	
 	google.maps.event.addDomListener(window, 'load', initialize); //creates a document ready scenario
